@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2026 Topps WWE Chrome — Parallel Numbers</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Syne:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0d0d0e;
+    --bg2: #141416;
+    --bg3: #1c1c1f;
+    --border: rgba(255,255,255,0.07);
+    --border2: rgba(255,255,255,0.12);
+    --text: #f0ede8;
+    --text2: #888580;
+    --text3: #4a4845;
+    --accent: #e8c84a;
+    --red: #e23333;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Syne', sans-serif;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── Header ── */
+  .header {
+    border-bottom: 1px solid var(--border);
+    padding: 2rem 1.25rem 1.5rem;
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  .header-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    color: var(--text3);
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+
+  .header h1 {
+    font-size: clamp(22px, 5vw, 36px);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--text);
+  }
+
+  .header h1 span {
+    color: var(--accent);
+  }
+
+  /* ── Main content ── */
+  .content {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 1.25rem 4rem;
+  }
+
+  /* ── Section labels ── */
+  .section-head {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 2rem 0 0.75rem;
+  }
+
+  .section-head h2 {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    color: var(--text3);
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .section-head::after {
+    content: '';
+    display: block;
+    height: 1px;
+    background: var(--border);
+    flex: 1;
+  }
+
+  /* ── Parallel rows ── */
+  .parallel-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+  }
+
+  .parallel-row {
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    align-items: center;
+    gap: 12px;
+    padding: 9px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .parallel-row:last-child {
+    border-bottom: none;
+  }
+
+  .row-name {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text);
+    min-width: 0;
+  }
+
+  .swatch {
+    width: 9px;
+    height: 9px;
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+
+  .name-text {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .row-print {
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text);
+    text-align: right;
+    white-space: nowrap;
+  }
+
+  .row-where {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  /* ── Pills ── */
+  .pill {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    padding: 3px 8px;
+    border-radius: 99px;
+    white-space: nowrap;
+    text-transform: uppercase;
+  }
+
+  .p-all    { background: rgba(232,200,74,0.12);  color: #c8a832; border: 1px solid rgba(232,200,74,0.2); }
+  .p-hobby  { background: rgba(93,202,165,0.10);  color: #4cb891; border: 1px solid rgba(93,202,165,0.2); }
+  .p-mega   { background: rgba(55,138,221,0.10);  color: #5b9fe8; border: 1px solid rgba(55,138,221,0.2); }
+  .p-value  { background: rgba(212,83,126,0.10);  color: #e07097; border: 1px solid rgba(212,83,126,0.2); }
+  .p-delight{ background: rgba(239,159,39,0.10);  color: #d4883e; border: 1px solid rgba(239,159,39,0.2); }
+  .p-logo   { background: rgba(143,119,221,0.12); color: #a593e0; border: 1px solid rgba(143,119,221,0.2); }
+
+  /* ── Mobile: collapse pill to icon on small screens ── */
+  @media (max-width: 480px) {
+    .parallel-row {
+      grid-template-columns: 1fr auto auto;
+      gap: 8px;
+    }
+    .row-name {
+      font-size: 13px;
+    }
+    .row-print {
+      font-size: 12px;
+    }
+    .pill {
+      font-size: 8px;
+      padding: 2px 6px;
+    }
+  }
+
+  /* ── Unnumbered table ── */
+  .unnum-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+  }
+
+  .unnum-row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 12px;
+    padding: 9px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .unnum-row:last-child { border-bottom: none; }
+
+  .unnum-name {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .sub-note {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--text3);
+  }
+
+  /* ── Texture cards ── */
+  .texture-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 8px;
+    margin-top: 0.5rem;
+  }
+
+  .texture-card {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 10px 12px;
+  }
+
+  .tc-name {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .tc-badge {
+    font-family: 'DM Mono', monospace;
+    font-size: 8px;
+    color: var(--text3);
+    font-weight: 400;
+  }
+
+  .tc-desc {
+    font-size: 11px;
+    color: var(--text2);
+    line-height: 1.5;
+  }
+
+  /* ── Legend ── */
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 1.5rem 0 0;
+    padding: 1rem;
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    color: var(--text2);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .legend-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+  }
+
+  /* ── Footer note ── */
+  .footnote {
+    margin-top: 2rem;
+    padding: 1rem 1.25rem;
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    border-left: 3px solid var(--accent);
+  }
+
+  .footnote p {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--text2);
+    line-height: 1.65;
+  }
+
+  .footnote .fn-label {
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin-bottom: 6px;
+  }
+
+  /* ── 1/1 SuperFractor highlight ── */
+  .row-1of1 .row-name {
+    color: var(--accent);
+  }
+  .row-1of1 .row-print {
+    color: var(--accent);
+  }
+
+  /* ── rarest numbered ── */
+  .row-rare .row-name {
+    color: var(--red);
+  }
+  .row-rare .row-print {
+    color: var(--red);
+  }
+
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-eyebrow">Chuck's WWE Collection · Reference</div>
+  <h1>2026 Topps<br>WWE Chrome<br><span>Parallel Numbers</span></h1>
+</div>
+
+<div class="content">
+
+  <!-- Legend -->
+  <div class="legend">
+    <div class="legend-item"><span class="legend-dot" style="background:#c8a832;"></span> All formats</div>
+    <div class="legend-item"><span class="legend-dot" style="background:#4cb891;"></span> Hobby only</div>
+    <div class="legend-item"><span class="legend-dot" style="background:#5b9fe8;"></span> Mega only</div>
+    <div class="legend-item"><span class="legend-dot" style="background:#e07097;"></span> Value / Blaster</div>
+    <div class="legend-item"><span class="legend-dot" style="background:#d4883e;"></span> Delight / Breaker</div>
+    <div class="legend-item"><span class="legend-dot" style="background:#a593e0;"></span> Logofractor Ed.</div>
+  </div>
+
+  <!-- Numbered parallels -->
+  <div class="section-head"><h2>Numbered · print run high to low</h2></div>
+
+  <div class="parallel-list">
+
+    <div class="parallel-row">
+      <div class="row-name"><span class="swatch" style="background:#E8C84A;"></span><span class="name-text">Magenta Refractor</span></div>
+      <div class="row-print">/399</div>
+      <div class="row-where"><span class="pill p-all">All</span></div>
+    </div>
+
+    <div class="parallel-row">
+      <div class="row-name"><span class="swatch" style="background:#5DCAA5;"></span><span class="name-text">Teal Refractor</span></div>
+      <div class="row-print">/299</div>
+      <div class="row-where"><span class="pill p-all">All</span></div>
+    </div>
+
+    <div class="parallel-row">
+      <div class="row-name"><span class="swatch" style="background:#F5E040;"></span><span class="name-text">Yellow Refractor</span></div>
+      <div class="row-print">/275</div>
+      <div class="row-where"><span class="pill p-all">All</span></div>
+    </div>
+
+    <div class="parallel-row">
+      <div class="row-name"><span class="swatch" style="background:#F4AABB;"></span><span class="name-text">Pink Refractor</span></div>
+      <div class="row-print">/250</div>
+      <div class="row-where"><span class="pill p-all">All</span></div>
+    </div>
+
+    <div class="parallel-row">
+      <div class="row-name"><span class="swatch" style="background:#7DD8C6;"></span><span class="name-text">Pink Mini-Diamond Refractor</span></div>
+      <div class="row-print">/250</div>
+      <div class="row-where"><span class="pill p-mega">Mega</span></div>
+    </div>
+
+    <div class="parallel-row">
+      <div class="row-name"><span class="swatch" style="background:#F9B8CB;"></span><span class="name-text">Pink RayWave Refractor</span></div>
+      <div class="row-print">/250</div>
+      <div class="row-where"><span class="pill p-value">Value</span></div>
+    </div>
+
+    <div class="parallel-row">
+      <div class="row-name"><span class="swatch" style="background:#72CCE0;"></span><span class="name-text">Aqua Refractor</span></div>
+      <div class="row-print">/199</div>
+      <div class="row-where"><span class="pill p-all">All</span></div>
+    </div>
+
+    <div class="parallel-row">
+      <div class="row-name"><span class="swatch" style="background:#5B9FE8;"></span><span class="name-text">Blue Refractor</span></div>
+      <div class="row-print">/150</div>
+      <div class="row-where"><span class="pill p-all">All</span></div>
+    </div>
+
+    <div class="parallel-row">
+      <div class="row-name"><span class="swatch" style="background:#89C7EF;"></span><span class="name-text">Blue Mini-Diamond Refractor</span></div>
+      <div class="row-print">/150</div>
+      <div class="row-where"><span class="pill p-mega">Mega</span></div>
+    </div>
+
+    <div class="parallel-row">
+      <div class="row-name"><span class="swatch" style="background:#7BB3D8;"></span><span class="name-text">Blue Geometric Refractor</span></div>
+      <div class="row-print">/150</div>
+      <div class="row-where"><span class="pill p-delight">Delight</span></div>
+    </div>
+
+    <div class="parallel-row">
+      <div class="row-name"><span class="swatch" style="background:#A3D9EE;"></span><span class="name-text">Blue RayWave Refractor</span></div>
+      <div class="row-print">/150</div>
+      <div class="row-where"><span class="pill p-value">Value</span></div>
+    </div>
+
+    <div class="parallel-row">
+      <div class="row-name"><span class="swatch" style="background:#6ABF5E;"></span><span class="name-text">Green Refractor</span></div>
+      <div class="row-print">/99</div>
+      <div class="row-where"><span class="pill p-all">All</span></div>
+    </div>
+
+    <div class="parallel-row">
+      <div class="row-name"><span class="swatch" style="background:#88CCB0;"></span><span class="name-text">Logofractor — Green</span></div>
+      <div class="row-print">/99</div>
+      <div class="row-where"><span class="pill p-logo">Logo</span></div>
+    </div>
+
+    <div class="parallel-row">
+      <div class="row-name"><span class="swatch" style="background:#B09FE8;"></span><span class="name-text">Purple Refractor</span></div>
+      <div class="row-print">/75</div>
+      <div class="row-where"><span class="pill p-all">All</span></div>
+    </div>
+
+    <div class="parallel-row">
+      <div class="row-name"><span class="swatch" style="background:#BEB3EE;"></span><span class="name-text">Purple Mini-Diamond Refractor</span></div>
+      <div class="row-print">/75</div>
+      <div class="row-where"><span class="pill p-mega">Mega</span></div>
+    </div>
+
+    <div class="parallel-row">
+      <div class="row-name"><span class="swatch" style="background:#C8B8F5;"></span><span class="name-text">Purple RayWave Refractor</span></div>
+      <div class="row-print">/75</div>
+      <div class="row-where"><span class="pill p-value">Value</span></div>
+    </div>
+
+    <div class="parallel-row">
+      <div class="row-name"><span class="swatch" style="background:#F0C040;"></span><span class="name-text">Gold Refractor</span></div>
+      <div class="row-print">/50</div>
+      <div class="row-where"><span class="pill p-all">All</span></div>
+    </div>
+
+    <div class="parallel-row">
+      <div class="row-name"><span class="swatch" style="background:#EDD06A;"></span><span class="name-text">Gold Mini-Diamond Refractor</span></div>
+      <div class="row-print">/50</div>
+      <div class="row-where"><span class="pill p-mega">Mega</span></div>
+    </div>
+
+    <div class="parallel-row">
+      <div class="row-name"><span class="swatch" style="background:#F2C840;"></span><span class="name-text">Gold Geometric Refractor</span></div>
+      <div class="row-print">/50</div>
+      <div class="row-where"><span class="pill p-delight">Delight</span></div>
+    </div>
+
+    <div class="parallel-row">
+      <div class="row-name"><span class="swatch" style="background:#F0D070;"></span><span class="name-text">Gold RayWave Refractor</span></div>
+      <div class="row-print">/50</div>
+      <div class="row-where"><span class="pill p-value">Value</span></div>
+    </div>
+
+    <div class="parallel-row">
+      <div class="row-name"><span class="swatch" style="background:#F2C060;"></span><span class="name-text">Logofractor — Gold</span></div>
+      <div class="row-print">/50</div>
+      <div class="row-where"><span class="pill p-logo">Logo</span></div>
+    </div>
+
+    <div class="parallel-row">
+      <div class="row-name"><span class="swatch" style="background:#F0944A;"></span><span class="name-text">Orange Refractor</span></div>
+      <div class="row-print">/25</div>
+      <div class="row-where"><span class="pill p-all">All</span></div>
+    </div>
+
+    <div class="parallel-row">
+      <div class="row-name"><span class="swatch" style="background:#F5A86A;"></span><span class="name-text">Orange Mini-Diamond Refractor</span></div>
+      <div class="row-print">/25</div>
+      <div class="row-where"><span class="pill p-mega">Mega</span></div>
+    </div>
+
+    <div class="parallel-row">
+      <div class="row-name"><span class="swatch" style="background:#F0A060;"></span><span class="name-text">Orange Geometric Refractor</span></div>
+      <div class="row-print">/25</div>
+      <div class="row-where"><span class="pill p-delight">Delight</span></div>
+    </div>
+
+    <div class="parallel-row">
+      <div class="row-name"><span class="swatch" style="background:#F8B880;"></span><span class="name-text">Orange RayWave Refractor</span></div>
+      <div class="row-print">/25</div>
+      <div class="row-where"><span class="pill p-value">Value</span></div>
+    </div>
+
+    <div class="parallel-row">
+      <div class="row-name"><span class="swatch" style="background:#F09050;"></span><span class="name-text">Logofractor — Orange</span></div>
+      <div class="row-print">/25</div>
+      <div class="row-where"><span class="pill p-logo">Logo</span></div>
+    </div>
+
+    <div class="parallel-row">
+      <div class="row-name"><span class="swatch" style="background:#B09FE8;"></span><span class="name-text">Purple Geometric Refractor</span></div>
+      <div class="row-print">/10</div>
+      <div class="row-where"><span class="pill p-delight">Delight</span></div>
+    </div>
+
+    <div class="parallel-row">
+      <div class="row-name"><span class="swatch" style="background:#2a2a2a; border: 1px solid #555;"></span><span class="name-text">Black Refractor</span></div>
+      <div class="row-print">/10</div>
+      <div class="row-where"><span class="pill p-all">All</span></div>
+    </div>
+
+    <div class="parallel-row">
+      <div class="row-name"><span class="swatch" style="background:#333; border: 1px solid #555;"></span><span class="name-text">Black Mini-Diamond Refractor</span></div>
+      <div class="row-print">/10</div>
+      <div class="row-where"><span class="pill p-mega">Mega</span></div>
+    </div>
+
+    <div class="parallel-row">
+      <div class="row-name"><span class="swatch" style="background:#424242; border: 1px solid #666;"></span><span class="name-text">Black RayWave Refractor</span></div>
+      <div class="row-print">/10</div>
+      <div class="row-where"><span class="pill p-value">Value</span></div>
+    </div>
+
+    <div class="parallel-row">
+      <div class="row-name"><span class="swatch" style="background:#3d3d3d; border: 1px solid #666;"></span><span class="name-text">Logofractor — Black</span></div>
+      <div class="row-print">/10</div>
+      <div class="row-where"><span class="pill p-logo">Logo</span></div>
+    </div>
+
+    <div class="parallel-row">
+      <div class="row-name"><span class="swatch" style="background:#E23333;"></span><span class="name-text">Red Refractor</span></div>
+      <div class="row-print">/5</div>
+      <div class="row-where"><span class="pill p-all">All</span></div>
+    </div>
+
+    <div class="parallel-row">
+      <div class="row-name"><span class="swatch" style="background:#D84040;"></span><span class="name-text">Red Mini-Diamond Refractor</span></div>
+      <div class="row-print">/5</div>
+      <div class="row-where"><span class="pill p-mega">Mega</span></div>
+    </div>
+
+    <div class="parallel-row">
+      <div class="row-name"><span class="swatch" style="background:#CC3535;"></span><span class="name-text">Red Geometric Refractor</span></div>
+      <div class="row-print">/5</div>
+      <div class="row-where"><span class="pill p-delight">Delight</span></div>
+    </div>
+
+    <div class="parallel-row">
+      <div class="row-name"><span class="swatch" style="background:#D83838;"></span><span class="name-text">Red RayWave Refractor</span></div>
+      <div class="row-print">/5</div>
+      <div class="row-where"><span class="pill p-value">Value</span></div>
+    </div>
+
+    <div class="parallel-row">
+      <div class="row-name"><span class="swatch" style="background:#E24444;"></span><span class="name-text">Logofractor — Red</span></div>
+      <div class="row-print">/5</div>
+      <div class="row-where"><span class="pill p-logo">Logo</span></div>
+    </div>
+
+    <div class="parallel-row">
+      <div class="row-name"><span class="swatch" style="background:#3399cc;"></span><span class="name-text">FrozenFractor</span></div>
+      <div class="row-print">/5</div>
+      <div class="row-where"><span class="pill p-hobby">Hobby</span></div>
+    </div>
+
+    <div class="parallel-row row-rare">
+      <div class="row-name"><span class="swatch" style="background:#1a1a1a; border: 1px solid #e23333;"></span><span class="name-text">Black Geometric Refractor</span></div>
+      <div class="row-print">/2</div>
+      <div class="row-where"><span class="pill p-delight">Delight</span></div>
+    </div>
+
+    <div class="parallel-row row-1of1">
+      <div class="row-name"><span class="swatch" style="background:#E8B8D8;"></span><span class="name-text">Logofractor — Rose Gold</span></div>
+      <div class="row-print">1/1</div>
+      <div class="row-where"><span class="pill p-logo">Logo</span></div>
+    </div>
+
+    <div class="parallel-row row-1of1">
+      <div class="row-name"><span class="swatch" style="background:#FFD700; border: 1px solid #c8a000;"></span><span class="name-text">SuperFractor</span></div>
+      <div class="row-print">1/1</div>
+      <div class="row-where"><span class="pill p-all">All</span></div>
+    </div>
+
+  </div>
+
+  <!-- Unnumbered -->
+  <div class="section-head"><h2>Unnumbered · no print run</h2></div>
+
+  <div class="unnum-list">
+    <div class="unnum-row">
+      <div class="unnum-name">Refractor (base)</div>
+      <div class="row-where"><span class="pill p-all">All</span></div>
+    </div>
+    <div class="unnum-row">
+      <div class="unnum-name">X-Fractor <span class="sub-note">10/box</span></div>
+      <div class="row-where"><span class="pill p-mega">Mega</span></div>
+    </div>
+    <div class="unnum-row">
+      <div class="unnum-name">Diamond Plate Refractor <span class="sub-note">3/box</span></div>
+      <div class="row-where"><span class="pill p-value">Value</span></div>
+    </div>
+    <div class="unnum-row">
+      <div class="unnum-name">Logofractor (base)</div>
+      <div class="row-where"><span class="pill p-logo">Logo</span></div>
+    </div>
+    <div class="unnum-row">
+      <div class="unnum-name">Geometric Refractor (base)</div>
+      <div class="row-where"><span class="pill p-delight">Delight</span></div>
+    </div>
+    <div class="unnum-row">
+      <div class="unnum-name">Prism Refractor</div>
+      <div class="row-where"><span class="pill p-hobby">Hobby</span></div>
+    </div>
+    <div class="unnum-row">
+      <div class="unnum-name">Negative Refractor</div>
+      <div class="row-where"><span class="pill p-hobby">Hobby</span></div>
+    </div>
+    <div class="unnum-row">
+      <div class="unnum-name">Sonar Refractor</div>
+      <div class="row-where"><span class="pill p-hobby">Hobby</span></div>
+    </div>
+    <div class="unnum-row">
+      <div class="unnum-name">Steel Cage Refractor <span class="sub-note">~1:139</span></div>
+      <div class="row-where"><span class="pill p-hobby">Hobby</span></div>
+    </div>
+  </div>
+
+  <!-- Texture guide -->
+  <div class="section-head"><h2>Texture guide</h2></div>
+
+  <div class="texture-grid">
+    <div class="texture-card">
+      <div class="tc-name">Refractor</div>
+      <div class="tc-desc">Standard chrome rainbow sheen. Clean, no pattern overlay. The baseline.</div>
+    </div>
+    <div class="texture-card">
+      <div class="tc-name">Mini-Diamond <span class="tc-badge">Mega</span></div>
+      <div class="tc-desc">Tiny repeating diamond lattice across the whole card surface.</div>
+    </div>
+    <div class="texture-card">
+      <div class="tc-name">RayWave <span class="tc-badge">Value</span></div>
+      <div class="tc-desc">Wavy ray-burst lines radiating outward. Retro-energy look.</div>
+    </div>
+    <div class="texture-card">
+      <div class="tc-name">Geometric <span class="tc-badge">Delight</span></div>
+      <div class="tc-desc">Bold geometric shapes overlaid on the design. Hard angles, high contrast.</div>
+    </div>
+    <div class="texture-card">
+      <div class="tc-name">Diamond Plate <span class="tc-badge">Value</span></div>
+      <div class="tc-desc">Metallic industrial diamond-plate texture. Steel floor grating on chrome.</div>
+    </div>
+    <div class="texture-card">
+      <div class="tc-name">X-Fractor <span class="tc-badge">Mega</span></div>
+      <div class="tc-desc">Classic crosshatch X-pattern. A long-standing Chrome staple.</div>
+    </div>
+    <div class="texture-card">
+      <div class="tc-name">Logofractor <span class="tc-badge">WM Ed.</span></div>
+      <div class="tc-desc">WWE logo embedded as a repeating foil pattern. Even the base looks premium.</div>
+    </div>
+    <div class="texture-card">
+      <div class="tc-name">Prism <span class="tc-badge">Hobby</span></div>
+      <div class="tc-desc">Oil-slick rainbow prismatic effect. Full spectrum color shift by angle.</div>
+    </div>
+    <div class="texture-card">
+      <div class="tc-name">Negative <span class="tc-badge">Hobby</span></div>
+      <div class="tc-desc">Photo colors fully inverted — skin tones go dark, backgrounds go light.</div>
+    </div>
+    <div class="texture-card">
+      <div class="tc-name">Sonar <span class="tc-badge">Hobby</span></div>
+      <div class="tc-desc">Concentric ring waves from a center point. Radar / sonar pulse look.</div>
+    </div>
+    <div class="texture-card">
+      <div class="tc-name">Steel Cage <span class="tc-badge">Hobby</span></div>
+      <div class="tc-desc">Wire cage/mesh texture overlaid. WWE-themed, very short print odds.</div>
+    </div>
+    <div class="texture-card">
+      <div class="tc-name">FrozenFractor <span class="tc-badge">Hobby /5</span></div>
+      <div class="tc-desc">Ice-crystal fractal pattern, cold blue tone. Among the rarest Hobby numbered.</div>
+    </div>
+  </div>
+
+  <!-- Footer note -->
+  <div class="footnote">
+    <div class="fn-label">Notes</div>
+    <p>Logofractor Edition sold at WrestleMania 42 (April 2026). Its numbered rainbow runs Green /99 → Gold /50 → Orange /25 → Black /10 → Red /5 → Rose Gold 1/1, skipping the /250–/150 stops used in the main set.<br><br>Mini-Diamond rainbow skips Green: Pink /250 → Blue /150 → Purple /75 → Gold /50 → Orange /25 → Black /10 → Red /5.</p>
+  </div>
+
+</div><!-- /content -->
+
+</body>
+</html>
