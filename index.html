@@ -270,6 +270,46 @@
   .tc-badge { font-family: 'DM Mono', monospace; font-size: 8px; color: var(--text3); font-weight: 400; }
   .tc-desc { font-size: 11px; color: var(--text2); line-height: 1.5; }
 
+  /* Set divider */
+  .set-divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 3rem 0 2rem;
+  }
+  .set-divider-line {
+    flex: 1;
+    height: 1px;
+    background: var(--border2);
+  }
+  .set-divider-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.14em;
+    color: var(--text3);
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  /* Second set header */
+  .set-header {
+    padding: 0 0 1rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .set-title {
+    font-size: clamp(22px, 5vw, 36px);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--text);
+  }
+  .set-title span { color: var(--accent); }
+
+  /* Universe unnumbered rows — no format pill col, just 2 cols */
+  .univ-list .parallel-row {
+    grid-template-columns: 1fr auto;
+  }
+
   /* Footnote */
   .footnote {
     margin-top: 2rem;
@@ -610,6 +650,90 @@
   <div class="footnote">
     <div class="fn-label">Notes</div>
     <p>Logofractor Edition sold at WrestleMania 42 (April 2026). Rainbow: Green /99 → Gold /50 → Orange /25 → Black /10 → Red /5 → Rose Gold 1/1 — skips the /250–/150 stops in the main set.<br><br>Mini-Diamond rainbow skips Green: Pink /250 → Blue /150 → Purple /75 → Gold /50 → Orange /25 → Black /10 → Red /5.</p>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════ -->
+  <!-- 2025 TOPPS WWE UNIVERSE                         -->
+  <!-- ═══════════════════════════════════════════════ -->
+
+  <div class="set-divider">
+    <div class="set-divider-line"></div>
+    <div class="set-divider-label">Second set</div>
+    <div class="set-divider-line"></div>
+  </div>
+
+  <div class="set-header">
+    <div class="header-eyebrow">Chuck's WWE Collection · Reference</div>
+    <h2 class="set-title">2025 Topps<br>WWE Universe<br><span>Parallel Numbers</span></h2>
+  </div>
+
+  <!-- Unnumbered Universe parallels -->
+  <div class="section-head" style="margin-top:1.25rem;"><h2>Unnumbered · no print run</h2></div>
+  <div class="unnum-list">
+    <div class="unnum-row" style="border-bottom:1px solid var(--border);">
+      <div class="unnum-name"><span class="swatch" style="background:linear-gradient(135deg,#f472b6,#facc15,#38bdf8);"></span>Flare</div>
+    </div>
+    <div class="unnum-row" style="border-bottom:1px solid var(--border);">
+      <div class="unnum-name"><span class="swatch" style="background:linear-gradient(135deg,#1e1b4b,#6d28d9,#a78bfa);"></span>Galaxy <span class="sub-note">Blaster Exclusive</span></div>
+    </div>
+    <div class="unnum-row" style="border-bottom:1px solid var(--border);">
+      <div class="unnum-name"><span class="swatch" style="background:linear-gradient(90deg,#e23333 33%,#f0f0f0 33%,#f0f0f0 66%,#3355cc 66%);"></span>Red, White, &amp; Blue Stars</div>
+    </div>
+    <div class="unnum-row">
+      <div class="unnum-name"><span class="swatch" style="background:radial-gradient(circle,#a0e0ff,#3399dd);"></span>Rings</div>
+    </div>
+  </div>
+
+  <!-- Numbered Universe parallels -->
+  <div class="section-head" style="margin-top:1.25rem;"><h2>Numbered · print run high to low</h2></div>
+  <div class="parallel-list univ-list">
+
+    <div class="parallel-row univ-row">
+      <div class="row-name"><span class="swatch" style="background:#9b7dd4;"></span><span class="name-text">Purple Glass</span></div>
+      <div class="row-print">/399</div>
+      <div class="row-where"></div>
+    </div>
+    <div class="parallel-row univ-row">
+      <div class="row-name"><span class="swatch" style="background:#5b9fe8;"></span><span class="name-text">Blue Pulse</span></div>
+      <div class="row-print">/175</div>
+      <div class="row-where"></div>
+    </div>
+    <div class="parallel-row univ-row">
+      <div class="row-name"><span class="swatch" style="background:#4ade80;"></span><span class="name-text">Green Electric</span></div>
+      <div class="row-print">/125</div>
+      <div class="row-where"></div>
+    </div>
+    <div class="parallel-row univ-row">
+      <div class="row-name"><span class="swatch" style="background:#f0c040;"></span><span class="name-text">Gold Stone</span></div>
+      <div class="row-print">/99</div>
+      <div class="row-where"></div>
+    </div>
+    <div class="parallel-row univ-row">
+      <div class="row-name"><span class="swatch" style="background:#fb923c;"></span><span class="name-text">Blast</span></div>
+      <div class="row-print">/50</div>
+      <div class="row-where"></div>
+    </div>
+    <div class="parallel-row univ-row">
+      <div class="row-name"><span class="swatch" style="background:#f97316;"></span><span class="name-text">Orange Warp</span></div>
+      <div class="row-print">/25</div>
+      <div class="row-where"></div>
+    </div>
+    <div class="parallel-row univ-row row-rare">
+      <div class="row-name"><span class="swatch" style="background:#e23333;"></span><span class="name-text">Red Magma</span></div>
+      <div class="row-print">/10</div>
+      <div class="row-where"></div>
+    </div>
+    <div class="parallel-row univ-row row-1of1">
+      <div class="row-name"><span class="swatch" style="background:linear-gradient(135deg,#ffd700,#c0a020);border:1px solid #c8a000;"></span><span class="name-text">Foilfractor</span></div>
+      <div class="row-print">1/1</div>
+      <div class="row-where"></div>
+    </div>
+
+  </div>
+
+  <div class="footnote" style="margin-top:1.5rem;">
+    <div class="fn-label">Notes</div>
+    <p>2025 Topps WWE Universe released spring 2025. Galaxy parallel is a Blaster box exclusive. Rainbow runs: Purple Glass /399 → Blue Pulse /175 → Green Electric /125 → Gold Stone /99 → Blast /50 → Orange Warp /25 → Red Magma /10 → Foilfractor 1/1.</p>
   </div>
 
 </div><!-- /content -->
